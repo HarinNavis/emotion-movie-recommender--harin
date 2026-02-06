@@ -1,0 +1,31 @@
+</div><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emotion Movie Recommender</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="card">
+<h1>🎭 Emotion Based Movie Recommender</h1>
+<p>Select your mood and get a movie instantly</p>
+
+
+<select id="emotion">
+<option value="">Choose emotion</option>
+<option value="happy">😊 Happy</option>
+<option value="sad">😢 Sad</option>
+<option value="angry">😠 Angry</option>
+<option value="romantic">❤️ Romantic</option>
+<option value="fear">😱 Fear</option>
+<option value="bored">😴 Bored</option>
+</select>
+
+
+<button onclick="getMovie()">Recommend 🎬</button>
+<div id="result"></div>
+
+
+<script src="/static/script.js"></script>
+</body>
+</html>

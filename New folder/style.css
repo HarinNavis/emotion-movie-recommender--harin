@@ -1,0 +1,54 @@
+body {
+background: linear-gradient(135deg, #141e30, #243b55);
+font-family: 'Segoe UI', sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+color: white;
+}
+
+
+.card {
+background: rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(10px);
+padding: 40px;
+border-radius: 20px;
+width: 350px;
+text-align: center;
+box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+
+h1 {
+margin-bottom: 10px;
+}
+
+
+select, button {
+width: 100%;
+padding: 12px;
+margin-top: 15px;
+border-radius: 10px;
+border: none;
+font-size: 16px;
+}
+
+
+button {
+background: #ff4b2b;
+color: white;
+cursor: pointer;
+}
+
+
+button:hover {
+background: #ff416c;
+}
+
+
+#result {
+margin-top: 20px;
+font-size: 20px;
+font-weight: bold;
+}

@@ -1,0 +1,103 @@
+from flask import Flask, render_template, request, jsonify
+import random
+
+
+app = Flask(__name__)
+
+
+movies = {
+"happy": [
+# English
+"The Hangover","3 Idiots","Toy Story","Up","Coco","Paddington","Yes Man","Free Guy",
+"Home Alone","Jumanji","The Mask","School of Rock","Little Miss Sunshine","Forrest Gump",
+"Mrs Doubtfire","Despicable Me","Minions","The Intern","Chef","Night at the Museum",
+"La La Land","Zootopia","Finding Nemo","Ratatouille","The Terminal",
+# Tamil
+"Boss Engira Bhaskaran","Panchathanthiram","Michael Madana Kama Rajan","Avvai Shanmugi",
+"Kalakalappu","Soodhu Kavvum","Thamizh Padam","Varuthapadatha Valibar Sangam",
+"Doctor","Oh My Kadavule","Good Night","Naduvula Konjam Pakkatha Kaanom",
+"Jigarthanda","Ethir Neechal","Kadhalum Kadanthu Pogum","Vaayai Moodi Pesavum",
+"Kalyana Samayal Saadham","Mozhi","Ullathai Allitha"
+],
+"sad": [
+# English
+"The Pursuit of Happyness","Titanic","Hachi","A Walk to Remember","The Fault in Our Stars",
+"The Green Mile","Schindler's List","Million Dollar Baby","Blue Valentine",
+"Manchester by the Sea","Grave of the Fireflies","Revolutionary Road",
+"Marley and Me","The Notebook","Room","Bridge to Terabithia",
+# Tamil
+"96","Vaaranam Aayiram","Paruthiveeran","Aadukalam","Subramaniapuram",
+
+"Peranbu","Kannathil Muthamittal","Moondram Pirai","Deiva Thirumagal",
+"Anjali","Kattradhu Thamizh","Raam","Pithamagan","Bala",
+"Taramani","Kandukondain Kandukondain"
+],
+
+
+"angry": [
+# English
+"John Wick","Gladiator","The Dark Knight","Fight Club","Mad Max Fury Road",
+"Django Unchained","300","Logan","The Matrix","V for Vendetta",
+"The Equalizer","Taken","Joker","Scarface","Rambo",
+# Tamil
+"Asuran","Visaranai","Jai Bhim","Vadachennai","Pudhupettai",
+"Kaala","Kabali","Pariyerum Perumal","Ratsasan","Indian",
+"Anniyan","Aaranya Kaandam","Sivaji","Vikram","Thuppakki",
+"Kaithi","Sarpatta Parambarai"
+],
+
+
+"romantic": [
+# English
+"The Notebook","La La Land","Before Sunrise","Me Before You","Notting Hill",
+"Pride and Prejudice","About Time","Call Me By Your Name","A Star Is Born",
+"Love Simon","Titanic","Eternal Sunshine of the Spotless Mind",
+# Tamil
+"Vinnaithaandi Varuvaayaa","Alaipayuthey","OK Kanmani","Sillunu Oru Kadhal",
+"Mouna Ragam","Raja Rani","Kaadhal","Autograph","Rhythm",
+"Roja","Bombay","Minnale","Neethane En Ponvasantham",
+"Kandukondain Kandukondain","Kadhal Desam","Aayutha Ezhuthu"
+],
+
+
+"fear": [
+# English
+"The Conjuring","Insidious","It","A Quiet Place","Hereditary",
+"The Exorcist","Sinister","The Ring","The Nun","Annabelle",
+"The Babadook","Smile","Lights Out","The Others","Paranormal Activity",
+# Tamil
+"Yaavarum Nalam","Demonte Colony","Pizza","Maya","Eeram",
+"Aranmanai","Chandramukhi","Aval","Kanchana","Nenjam Marappathillai",
+"Irul","Boomika","Mohini","Kalpana","Diya"
+],
+
+
+"bored": [
+# English
+"Inception","Interstellar","Avatar","Harry Potter","Lord of the Rings",
+"Jurassic Park","Pirates of the Caribbean","Ready Player One","Avengers",
+"Spider Man No Way Home","Doctor Strange","The Martian","Gravity",
+"Edge of Tomorrow","Tenet","Dune","Mad Max",
+# Tamil
+"Enthiran","2.0","Dasavathaaram","24","Aayirathil Oruvan",
+"Baahubali","Vikram","Leo","Maaveeran","Mark Antony",
+"Kaithi","Thuppakki","Master","Mankatha","Sura"
+]
+}
+
+
+@app.route("/")
+def index():
+return render_template("index.html")
+
+
+@app.route("/recommend", methods=["POST"])
+def recommend():
+emotion = request.json.get("emotion")
+if emotion not in movies:
+return jsonify({"movie": "Invalid emotion"})
+return jsonify({"movie": random.choice(movies[emotion])})
+
+
+if __name__ == "__main__":
+app.run(debug=True)
